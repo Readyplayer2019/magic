@@ -2,60 +2,36 @@
 <html>
 <head>
     <title>Black-Scholes Option Calculator</title>
+    <link rel="stylesheet" href="/static/index.css" />
+    <script src="/static/index.js" defer></script>
 </head>
 <body>
-    <h1>Black-Scholes Option Calculator</h1>
-    <form method="POST">
-        <label for="r">Risk-free rate (r):</label>
-        <input type="text" name="r" value="0.03"><br>
-        <label for="S">Stock price (S):</label>
-        <input type="text" name="S" value="120"><br>
-        <label for="K">Strike price:</label>
-        <input type="text" name="K"><br>
-        <label for="T">Time to maturity (years):</label>
-        <input type="text" name="T"><br>
-        <label for="volatility">Volatility:</label>
-        <input type="text" name="volatility"><br>
-        <select name="model">
-            <option value="black-scholes">Black-Scholes</option>
-            <option value="monte-carlo">Monte-Carlo</option>
-        </select>
-        <input type="submit" value="Calculate">
-    </form>
-    {% if call_price is defined and put_price is defined %}
+<h1>Black-Scholes Option Calculator</h1>
+<form id="inputs">
+    <label for="r">Risk-free rate (r):</label>
+    <input type="text" name="r" value="0.03"><br>
+    <label for="S">Stock price (S):</label>
+    <input type="text" name="S" value="120"><br>
+    <label for="K">Strike price:</label>
+    <input type="text" name="K"><br>
+    <label for="T">Time to maturity (years):</label>
+    <input type="text" name="T"><br>
+    <label for="volatility">Volatility:</label>
+    <input type="text" name="volatility"><br>
+    <select name="model">
+        <option value="black-scholes">Black-Scholes</option>
+        <option value="monte-carlo">Monte-Carlo</option>
+    </select>
+    <button id="calculate" type="button">Calculate</button>
+</form>
+
+
+<div id="output" class="hidden">
     <h2>Option Prices:</h2>
-    <p>Call option price: {{ call_price }}</p>
-    <p>Put option price: {{ put_price }}</p>
-    {% endif %}
+    <p>Call option price: <span id="call"></span></p>
+    <p>Put option price: <span id="put"></span></p>
+</div>
+
+<div id="graph"></div>
 </body>
 </html>
-<!DOCTYPE html>
-
-<html>
-<head>
-    <title>Option Prices</title>
-    <style type="text/css">
-        body {
-            font-family: Inter;
-            text-align: center;
-            background-color: #C1D1E6
-        }
-
-        select, input {
-           border-radius: 2px;
-           margin-top: 3px;
-
-        }
-    </style>
-</head>
-<body>
-
-<!-- your form here -->
-
-{% if plot_div %}
-    {{ plot_div|safe }}
-{% endif %}
-
-</body>
-</html>
-
