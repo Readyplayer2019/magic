@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Black-Scholes Option Calculator</title>
+</head>
+<body>
+    <h1>Black-Scholes Option Calculator</h1>
+    <form method="POST">
+        <label for="r">Risk-free rate (r):</label>
+        <input type="text" name="r" value="0.03"><br>
+        <label for="S">Stock price (S):</label>
+        <input type="text" name="S" value="120"><br>
+        <label for="K">Strike price:</label>
+        <input type="text" name="K"><br>
+        <label for="T">Time to maturity (years):</label>
+        <input type="text" name="T"><br>
+        <label for="volatility">Volatility:</label>
+        <input type="text" name="volatility"><br>
+        <input type="submit" value="Calculate">
+    </form>
+    {% if call_price is defined and put_price is defined %}
+    <h2>Option Prices:</h2>
+    <p>Call option price: {{ call_price }}</p>
+    <p>Put option price: {{ put_price }}</p>
+    {% endif %}
+</body>
+</html>
