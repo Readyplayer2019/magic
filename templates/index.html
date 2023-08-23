@@ -16,6 +16,10 @@
         <input type="text" name="T"><br>
         <label for="volatility">Volatility:</label>
         <input type="text" name="volatility"><br>
+        <select name="model">
+            <option value="black-scholes">Black-Scholes</option>
+            <option value="monte-carlo">Monte-Carlo</option>
+        </select>
         <input type="submit" value="Calculate">
     </form>
     {% if call_price is defined and put_price is defined %}
@@ -25,3 +29,33 @@
     {% endif %}
 </body>
 </html>
+<!DOCTYPE html>
+
+<html>
+<head>
+    <title>Option Prices</title>
+    <style type="text/css">
+        body {
+            font-family: Inter;
+            text-align: center;
+            background-color: #C1D1E6
+        }
+
+        select, input {
+           border-radius: 2px;
+           margin-top: 3px;
+
+        }
+    </style>
+</head>
+<body>
+
+<!-- your form here -->
+
+{% if plot_div %}
+    {{ plot_div|safe }}
+{% endif %}
+
+</body>
+</html>
+
