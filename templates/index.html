@@ -1,23 +1,26 @@
+
 <!DOCTYPE html>
 <html>
 <head>
     <title>Black-Scholes Option Calculator</title>
     <link rel="stylesheet" href="/static/index.css" />
     <script src="/static/index.js" defer></script>
+    <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
 </head>
 <body>
 <h1>Black-Scholes Option Calculator</h1>
 <form id="inputs">
-    <label for="r">Risk-free rate (r):</label>
-    <input type="text" name="r" value="0.03"><br>
-    <label for="S">Stock price (S):</label>
+    <label for="r">Risk-free rate (%/year):</label>
+    <input type="text" name="r" value="3"><br>
+    <label for="S">Stock price ($):</label>
     <input type="text" name="S" value="120"><br>
-    <label for="K">Strike price:</label>
-    <input type="text" name="K"><br>
+    <label for="K">Strike price ($):</label>
+    <input type="text" name="K" value="100"><br>
     <label for="T">Time to maturity (years):</label>
-    <input type="text" name="T"><br>
-    <label for="volatility">Volatility:</label>
-    <input type="text" name="volatility"><br>
+    <input type="text" name="T" value="4"><br>
+    <label for="volatility">Volatility (%):</label>
+    <input type="text" name="volatility" value="14"><br>
     <select name="model">
         <option value="black-scholes">Black-Scholes</option>
         <option value="monte-carlo">Monte-Carlo</option>
