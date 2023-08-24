@@ -1,9 +1,11 @@
+/*
 @import url('https://fonts.googleapis.com/css2?family=Inter&display=swap');
 
 body {
     font-family: Inter;
     text-align: center;
-    background-color: #C1D1E6
+    background-color: #C1D1E6;
+    padding: 10%;
 }
 
 select, input, label {
@@ -15,4 +17,34 @@ select, input, label {
 
 .hidden {
     display: none;
+}
+
+#chart {
+    padding: 10px;
+}
+*/
+@import url('https://fonts.googleapis.com/css2?family=Inter&display=swap');
+
+body {
+    font-family: 'Inter', sans-serif;
+    text-align: center;
+    background-color: #C1D1E6;
+    padding: 10%;
+}
+
+select, input, label {
+   border: none;
+   font-size: 20px;
+   margin-top: 10px;
+}
+
+.hidden {
+    display: none;
+}
+
+#graph {
+    padding: 10px;
+    background-color: #fff;
+    margin-top: 20px;
+    border-radius: 5px;
 }
