@@ -4,6 +4,11 @@
     <title>Black-Scholes Option Calculator</title>
     <link rel="stylesheet" href="/static/index.css" />
     <script src="/static/index.js" defer></script>
+    <script>
+        const vars = ["rate", "stock", "strike", "maturity", "volatility", "model"]
+        const initial_url = "/api/option?";
+    </script>
+    <div id `="calculate" class = "hidden" >
     <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 </head>
@@ -23,7 +28,6 @@
     <select name="model">
         <option value="black-scholes">Black-Scholes (Implied Volatility)</option>
         <option value="monte-carlo">Monte-Carlo (Implied Volatility)</option>
-        <option value="heston">Heston (Stochastic Volatility)</option>
     </select>
     <button id="calculate" type="button">Calculate</button>
 </form>
@@ -35,6 +39,6 @@
     <p>Put option price: <span id="put"></span></p>
 </div>
 
-<div id="graph"></div>
+<div id="graph" class="hidden"></div>
 </body>
 </html>

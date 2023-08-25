@@ -3,8 +3,7 @@ google.charts.load('current', {'packages':['line']});
 document.querySelector("#calculate").onclick = () => {
     let form = new FormData(document.querySelector("#inputs"))
 
-    let url = "/api?";
-    let vars = ["rate", "stock", "strike", "maturity", "volatility", "model"]
+    let url = initial_url;
 
     for (const var_ of vars) {
         url += `${var_}=${document.getElementsByName(var_)[0].value}&`;
@@ -13,6 +12,7 @@ document.querySelector("#calculate").onclick = () => {
     fetch(url)
     .then(response => response.json())
     .then(res => {
+        console.log(res)
         let output = document.querySelector("#output");
         output.classList.remove("hidden");
         document.querySelector("#call").innerHTML = `$${res.call_prices.slice(-1)[0].toFixed(2)}`;
@@ -32,6 +32,7 @@ document.querySelector("#calculate").onclick = () => {
             legend: { position: "bottom" },
         };
 
+        document.getElementById('graph').classList.remove("hidden")
         let chart = new google.charts.Line(document.getElementById('graph'));
         chart.draw(data, google.charts.Line.convertOptions(options));
     })
