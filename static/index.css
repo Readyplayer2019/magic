@@ -8,9 +8,9 @@ body {
 }
 
 select, input, label {
-   border: none;
-   font-size: 20px;
-   margin-top: 10px;
+    border: none;
+    font-size: 20px;
+    margin-top: 10px;
 }
 
 .hidden {

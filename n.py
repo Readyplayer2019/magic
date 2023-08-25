@@ -73,6 +73,7 @@ def monte_carlo_option_price(r, S, K, T, volatility, option_type="c", sims=10000
 def norm_cdf(x):
     return 0.5 * (1 + math.erf(x / np.sqrt(2)))
 
+
 """"
 def get_price(r, S, K, T, volatility, option_type="c", model="black-scholes"):
     match model:
@@ -81,6 +82,8 @@ def get_price(r, S, K, T, volatility, option_type="c", model="black-scholes"):
         case "monte-carlo":
             return monte_carlo_option_price(r, S, K, T, volatility, option_type)
 """
+
+
 def get_price(r, S, K, T, volatility, option_type="c", model="black-scholes"):
     if model == "black-scholes":
         return black_scholes(r, S, K, T, volatility, option_type)
@@ -106,7 +109,6 @@ def get_price(r, S, K, T, volatility, option_type="c", model="black-scholes"):
         return monte_carlo_option_price(r, S, K, T, volatility, option_type)
 
 
-
 def black_scholes(r, S, K, T, volatility, option_type="c"):
     d1 = (np.log(S / K) + (r + volatility ** 2 / 2) * T) / (volatility * np.sqrt(T))
     d2 = d1 - (volatility * np.sqrt(T))
@@ -121,6 +123,7 @@ def black_scholes(r, S, K, T, volatility, option_type="c"):
 def index():
     return render_template('index.html')
 
+
 @app.route('/heston')
 def heston():
     return render_template('heston.html')
@@ -134,10 +137,7 @@ def api():
     maturity = float(request.args.get('maturity'))
     volatility = float(request.args.get('volatility')) / 100
 
-
     model = request.args.get('model')
-
-
 
     years = list(range(1, int(maturity) + 1))
     call_prices = [get_price(rate, stock, strike, year, volatility, "c", model) for year in years]
@@ -147,6 +147,7 @@ def api():
 
     return jsonify({"call_prices": call_prices, "put_prices": put_prices})
 
+
 @app.route("/api/heston")
 def heston_api():
     initial_asset = float(request.args.get('initial_asset'))
@@ -155,11 +156,12 @@ def heston_api():
     theta = float(request.args.get('theta'))
     reversion = float(request.args.get('k')) / 100
     dt = float(request.args.get('dt'))
-    sigma =float(request.args.get('sigma')) / 100
+    sigma = float(request.args.get('sigma')) / 100
     simulation_time = float(request.args.get("simulation_time"))
     correlation_with_asset = float(request.args.get('correlation_with_asset')) / 100
 
-    s, v = heston_simulation(initial_asset, initial_variance, rate_of_return, reversion, theta, sigma, correlation_with_asset, simulation_time, dt)
+    s, v = heston_simulation(initial_asset, initial_variance, rate_of_return, reversion, theta, sigma,
+                             correlation_with_asset, simulation_time, dt)
     output = jsonify({"asset_price": list(s), "stochastic_volatility": list(v)})
     print({"asset_price": list(s), "stochastic_volatility": list(v)})
     return output
