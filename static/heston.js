@@ -1,5 +1,5 @@
-const vars = ["rate", "stock", "strike", "maturity", "volatility", "model"]
-const initial_url = "/api/option?";
+const vars = ["initial_asset", "initial_variance", "Rate_of_return", "theta", "k", "dt", "sigma", "correlation_with_asset", "simulation_time"]
+const initial_url = "/api/heston?";
 
 google.charts.load('current', {'packages': ['line']});
 
@@ -15,23 +15,20 @@ document.querySelector("#calculate").onclick = () => {
     fetch(url)
         .then(response => response.json())
         .then(res => {
-            console.log(res)
             let output = document.querySelector("#output");
             output.classList.remove("hidden");
-            document.querySelector("#call").innerHTML = `$${res.call_prices.slice(-1)[0].toFixed(2)}`;
-            document.querySelector("#put").innerHTML = `$${res.put_prices.slice(-1)[0].toFixed(2)}`;
+            document.querySelector("#vol").innerHTML = `${res.stochastic_volatility.slice(-1)[0].toFixed(2)}%`;
 
-            let array = [[...Array(parseInt(form.get("maturity").toString()) + 1).keys()].slice(1), res.call_prices, res.put_prices];
+            let array = [[...Array(parseInt(res.stochastic_volatility.length) + 1).keys()].slice(1), res.stochastic_volatility];
             output = array[0].map((_, colIndex) => array.map(row => row[colIndex]));
 
             let data = new google.visualization.DataTable();
-            data.addColumn("number", "Years");
-            data.addColumn("number", "Call Price");
-            data.addColumn("number", "Put Price");
+            data.addColumn("number", "T");
+            data.addColumn("number", "Stochastic Volatility");
             data.addRows(output);
 
             let options = {
-                title: form.get("model") + " Option Price against Maturity",
+                title: form.get("model") + "Stochastic Volatility through Simulation Time",
                 legend: {position: "bottom"},
             };
 

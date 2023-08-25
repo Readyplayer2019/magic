@@ -1,35 +1,41 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
     <title>Black-Scholes Option Calculator</title>
+
+    <link rel="shortcut icon" href="/static/favicon.ico">
+
     <link rel="stylesheet" href="/static/index.css"/>
     <script src="/static/index.js" defer></script>
-    <script>
-        const vars = ["rate", "stock", "strike", "maturity", "volatility", "model"]
-        const initial_url = "/api/option?";
-    </script>
-    <div id `="calculate" class="hidden">
-        <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
 </head>
 <body>
 <h1>Black-Scholes Option Calculator</h1>
+<h3><a href="/heston">Link to Heston Calculator</a></h3>
 <form id="inputs">
-    <label for="rate">Risk-free rate (%/year):</label>
-    <input type="text" name="rate" value="3"><br>
-    <label for="stock">Stock Price ($):</label>
-    <input type="text" name="stock" value="120"><br>
-    <label for="strike">Strike price ($):</label>
-    <input type="text" name="strike" value="100"><br>
-    <label for="maturity">Time to maturity (years):</label>
-    <input type="text" name="maturity" value="4"><br>
-    <label for="volatility">Volatility (%):</label>
-    <input type="text" name="volatility" value="14"><br>
-    <select name="model">
-        <option value="black-scholes">Black-Scholes (Implied Volatility)</option>
-        <option value="monte-carlo">Monte-Carlo (Implied Volatility)</option>
-    </select>
-    <button id="calculate" type="button">Calculate</button>
+    <label>Risk-free rate (%/year):
+        <input type="text" name="rate" value="3"><br>
+    </label>
+    <label>Stock Price ($):
+        <input type="text" name="stock" value="120"><br>
+    </label>
+    <label>Strike price ($):
+        <input type="text" name="strike" value="100"><br>
+    </label>
+    <label>Time to maturity (years):
+        <input type="text" name="maturity" value="4"><br>
+    </label>
+    <label>Volatility (%):
+        <input type="text" name="volatility" value="14"><br>
+    </label>
+    <label>
+        <select name="model">
+            <option value="black-scholes">Black-Scholes (Implied Volatility)</option>
+            <option value="monte-carlo">Monte-Carlo (Implied Volatility)</option>
+        </select>
+        <button id="calculate" type="button">Calculate</button>
+    </label>
 </form>
 
 

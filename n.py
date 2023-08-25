@@ -3,24 +3,6 @@ import numpy as np
 import math
 
 app = Flask(__name__)
-sims = 10000
-""""
-def heston_simulation(ia, iv, mu, p, theta, sigma, r, T, dt):
-    N = int(T / dt)
-    s = np.zeros(N + 1)
-    v = np.zeros(N + 1)
-    s[0] = ia
-    v[0] = iv
-    for t in range(1, N + 1):
-        dW1 = np.sqrt(dt) * np.random.normal()
-        dW2 = r * dW1 + np.sqrt(1 - r ** 2) * np.sqrt(dt) * np.random.normal()
-
-        v[t] = v[t - 1] + p * (theta - max(v[t - 1], 0)) * dt + sigma * np.sqrt(max(v[t - 1], 0)) * dW2
-        v[t] = max(v[t], 0)
-        s[t] = s[t - 1] * np.exp((mu - 0.5 * v[t]) * dt + np.sqrt(v[t]) * dW1)
-    return s, np.sqrt(v)
-"""
-import numpy as np
 
 
 def heston_simulation(ia, iv, mu, p, theta, sigma, r, T, dt):
@@ -74,17 +56,7 @@ def norm_cdf(x):
     return 0.5 * (1 + math.erf(x / np.sqrt(2)))
 
 
-""""
-def get_price(r, S, K, T, volatility, option_type="c", model="black-scholes"):
-    match model:
-        case "black-scholes":
-            return black_scholes(r, S, K, T, volatility, option_type)
-        case "monte-carlo":
-            return monte_carlo_option_price(r, S, K, T, volatility, option_type)
-"""
-
-
-def get_price(r, S, K, T, volatility, option_type="c", model="black-scholes"):
+def get_price(r, S, K, T, volatility, option_type="c", model="black-scholes", sims=10000):
     if model == "black-scholes":
         return black_scholes(r, S, K, T, volatility, option_type)
     elif model == "heston":

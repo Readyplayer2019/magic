@@ -3,11 +3,13 @@
 body {
     font-family: 'Inter', sans-serif;
     text-align: center;
-    background-color: #C1D1E6;
+    background-image: url("/static/pandas.png");
+    background-size: cover;
+    backdrop-filter: blur(8px);
     padding: 10%;
 }
 
-select, input, label {
+select, input, label, button {
     border: none;
     font-size: 20px;
     margin-top: 10px;
@@ -17,9 +19,9 @@ select, input, label {
     display: none;
 }
 
-#graph {
+form, #output, #graph {
     padding: 10px;
-    background-color: #fff;
+    background-color: rgba(255, 255, 255, 0.5);
     margin-top: 20px;
     border-radius: 5px;
 }
